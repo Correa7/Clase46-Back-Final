@@ -1,0 +1,73 @@
+<br>
+
+<div class="box">
+  {{!-- <div><h2>PRODUCTS</h2></div> --}}
+  {{#if user.firstName}}
+    <div class="user-box">
+      <div class="d-flex justify-content-between">
+        <h2 style="background-color:rgb(0, 0, 0);">Welcome  {{user.firstName}} {{user.lastName}}</h2>
+        <a  id="{{user.cart}}" href="/cart" class="userCart m-4"></a>
+      </div>
+    </div> 
+  {{/if}}
+  
+
+  <div class="pagination-box-totalLinks">
+      {{#each links}}
+        <a class="btn" href="{{this.href}}">{{this.label}}</a>
+      {{/each}}
+    </div> 
+    <br>
+
+  <div class="contenedor-cards" id="z-cards">
+    {{#each products}} 
+      {{! <div class="card" style="width: 15rem;"> }}
+      <div class="card">
+        <img src="{{this.thumbnail}}" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <h5 class="card-title">{{this.title}}</h5>
+          {{!-- <p class="card-text">Description: {{this.description}}</p> --}}
+          <p class="card-text">Price: $<strong>{{this.price}}</strong>
+            || Stock:
+            {{this.stock}}</p>
+
+        </div>
+        <div class="card-body">
+
+          <button 
+            id="{{this._id}}"
+            class="btn "
+            onclick="addProductToCart('{{this._id}}')" 
+          >Add to Cart</button>
+        </div>
+      </div>
+    {{/each}}
+  </div>
+  <br>
+  
+  <div class="pagination-box">
+    <div class="pagination-box-links">
+      {{#if pagination.hasPrevPage}}
+        <a class="pagination-links" href="/views/products/?page={{pagination.prevPage}}"><p>⇦</p><p>{{pagination.prevPage}}</p></a>
+      {{/if}} 
+      <a class="pagination-links" href="#"><p>{{pagination.page}}</p></a>
+      {{#if pagination.hasNextPage}}
+        <a class="pagination-links" href="/views/products/?page={{pagination.nextPage}}"><p>{{pagination.nextPage}}</p><p>⇨</p></a>
+      {{/if}}
+    </div>
+  </div>
+  <br>
+  <div class="data-box">
+    <span> totalDocs:{{pagination.totalDocs}}</span>
+    <span>limit:{{pagination.limit}}</span>
+    <span>totalPages:{{pagination.totalPages}}</span>
+    <span>page:{{pagination.page}}</span>
+    <span>pagingCounter:{{pagination.pagingCounter}}</span>
+    <span>hasPrevPage:{{pagination.hasPrevPage}}</span>
+    <span>hasNextPage:{{pagination.hasNextPage}}</span>
+    <span>prevPage:{{pagination.prevPage}}</span>
+    <span>nextPage:{{pagination.nextPage}}</span>
+  </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="/js/loggedproducts.js"></script>
