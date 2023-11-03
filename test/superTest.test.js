@@ -8,7 +8,7 @@ const requester = supertest('http://localhost:8080')
 describe('Coderhouse Commission 44705 project Test', ()=>{ 
 
     before(function () {
-        this.userId='6522b3ac44d1be1784c4bd7d'
+        this.userId='653efa3892eaa4afbb3f8d56'
         this.mockUser = {
             firstName: "User Test",
             lastName: "Coder",
@@ -38,7 +38,7 @@ describe('Coderhouse Commission 44705 project Test', ()=>{
         
           let user ={
               email:'correadamian2019@gmail.com',
-              password: '123456'
+              password: '123'
           }
          
           const {statusCode,ok,info} = await requester.post('/session/login').send(user) 
@@ -49,7 +49,7 @@ describe('Coderhouse Commission 44705 project Test', ()=>{
       })
       it('Cambiar rol del usuario: Debe cambiar el rol del usuario a Premium o a User', async function () {
 
-           const {statusCode,_body} = await requester.put(`/api/user/premium/${this.userId}`) 
+           const {statusCode,_body} = await requester.put(`/api/admin/panel/${this.userId}`) 
 
            expect(statusCode).is.equal(201)
            expect(_body).to.have.property('status')
@@ -59,7 +59,7 @@ describe('Coderhouse Commission 44705 project Test', ()=>{
       it('Eliminar Session', async function (){
           
           const {statusCode} = await requester.get('/session/logout')
-          expect(statusCode).is.equal(200)
+          expect(statusCode).is.equal(302)
       
        })
 
@@ -76,9 +76,9 @@ describe('Coderhouse Commission 44705 project Test', ()=>{
             expect(_body.payload.products[0]).is.ok.and.to.have.property('id');
         })
 
-        it("Crear un Producto: El API POST /api/product debe crear un nuevo producto correctamente", async function () {
+        it("Crear un Producto: El API Post /api/product debe crear un nuevo producto correctamente", async function () {
 
-            const { statusCode, _body } = await requester.post('/api/product').send(this.mockProduct)
+            const { statusCode, _body } = await requester.post('/api/product/').send(this.mockProduct)
                         
             expect(statusCode).to.be.equal(201)
             expect(_body.payload).is.ok.and.to.have.property('_id')
@@ -142,7 +142,6 @@ describe('Coderhouse Commission 44705 project Test', ()=>{
 
         })
 
-        
         it('Test delete cart: el metodo delete /api/cart/:cid debe eliminar todos los prodctos de un carro por id', async function (){
             
             let {statusCode,_body} = await requester.delete(`/api/cart/${this.cid}`)

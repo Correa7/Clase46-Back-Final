@@ -8,14 +8,14 @@ program
     .option('--mode <mode>', 'Modo de trabajo', 'develop')
 program.parse()
 
-//console.log("Options: ", program.opts());
+
 console.log("Mode Option: ", program.opts().mode);
 const environment = program.opts().mode;
 dotenv.config({
     path: environment === 'production'? './src/config/.env.production':'./src/config/.env.development' 
 })
 
-// dotenv.config({path:'./src/config/.env.development'}) 
+
 
 module.exports = {
     port:process.env.PORT || 3000, 

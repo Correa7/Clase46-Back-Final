@@ -16,7 +16,7 @@ const router = new express.Router();
 router.use(express.json());   
 router.use(express.urlencoded({ extended: true }));
 
-router.get("/", getWithQuerys);
+router.get("/", getWithQuerys); 
 router.get("/:pid", isAdminPrimium, getProductById);
 // router.post("/",goToLogin, isAdminPrimium, addProduct);  
 router.post("/",addProduct); // sin middlewares para test

@@ -6,7 +6,7 @@ const ticketService = new  TicketService();
 const productService = new ProductService();
 const {stripePublishableKey, stripeSecretKey} = require('../config/env.config.js')
 const stripe = require('stripe')(stripeSecretKey);
-// (keys.stripeSecretKey);
+
 
 const getAll = async (req, res)=> {
     try {
@@ -99,7 +99,6 @@ const deleteProductFromCart = async (req, res)=> {
         const cid = req.params.cid;
         await cartService.deleteProductFromCart(pid, cid)
         const cart = await cartService.getCartById(cid);
-        console.log(cart)
         res.status(201).json({
             status: "success",
             message: `Product with id:${pid} was deleted successfully from cart with id ${cid}`,

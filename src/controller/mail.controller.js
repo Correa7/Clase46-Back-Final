@@ -94,7 +94,6 @@ const sendResetPass = async (req,res)=>{
         let userEmail = req.body.email
         console.log(userEmail)
         const user = await userModel.findOne({email:userEmail})
-        console.log(user)
         if(!user){
             return res.status(401).render('resetSendMail',{
                 style: "recovery.css",
@@ -104,8 +103,7 @@ const sendResetPass = async (req,res)=>{
         }
         
         const token = jwt.sign({id:user.id}, secret, {expiresIn:'1h'})
-        console.log(token)
-
+     
         const emailRecoveryOptions ={
             from: 'Coder Test c_44705 - ' + gmailAccount,
             to: userEmail,

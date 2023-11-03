@@ -55,7 +55,13 @@ const getProductById = async (req, res) =>{
 const addProduct = async (req, res) =>{ 
       try {
           const product = req.body
-          product.owner= req.session.user.email
+          if(!req.session.user){
+            product.owner= 'admin@admin.com.ar' 
+          }
+          else{
+            product.owner= req.session.user.email
+          }
+         
        
           const { title, description, price, thumbnail,code,stock,category, status } = req.body;
         if (!title || !description || !price || !code || !stock || !category) {
@@ -140,7 +146,7 @@ const updateProduct = async (req, res) =>{
           }) 
       }
   }
-
+ 
 const addManyProducts = async (req, res) => {
       try { 
         const data = req.body;

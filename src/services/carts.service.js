@@ -20,12 +20,7 @@ class CartService {
   }
   async addCart() {
     try {
-      // const tiempoTranscurrido = Date.now();
-      // const hoy = new Date(tiempoTranscurrido);
-      // data.date = hoy.toDateString() + ' ' + uuid4()
-      // console.log(data.date);
       let newCart = await CartMethods.create({ products: [] }) 
-      // let newCart = await CartMethods.create() 
       console.log('Cart was created succesfully');  
       return newCart;
     } catch (error) {  
@@ -44,7 +39,6 @@ class CartService {
     try {
 
       const cart = await CartMethods.updateOne(_id);  
-      // const cart = await this.getCartById(_id)
       return cart;   
     } catch (error) {
       throw new Error(error.message);
@@ -54,7 +48,6 @@ class CartService {
     try {
       await CartMethods.delete(_id);
       const cart ='Delete cart in service' 
-      // const cart = await this.getCartById(_id)
       return cart;   
     } catch (error) {
       throw new Error(error.message);
@@ -166,7 +159,6 @@ class CartService {
         let amount = 0;
         let prodOutStock = []
         let prodStock = []
-        // let prodLessStock = []
 
         productsData.map((prod, index) => {
           if (productsQuantity[index] > prod.stock) {

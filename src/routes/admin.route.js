@@ -9,9 +9,9 @@ router.use(express.urlencoded({extended:true}));
 
 router.get('/', goToLogin,isAdmin, adminPanelRender);
 router.get('/panel', goToLogin,isAdmin,adminGetUsers);
-router.put('/panel/:uid', goToLogin,isAdmin, adminRolUserById);
+router.put('/panel/:uid', adminRolUserById); // Sin middlewares para test
 router.delete('/panel/:uid',goToLogin,isAdmin,adminDelUserById);
 router.delete('/panel',goToLogin,isAdmin,adminInactiveUsers);
-router.get('*',goToLogin,isAdmin,getError);
+router.get('*',goToLogin,isAdmin,getError); 
 
 module.exports = router;

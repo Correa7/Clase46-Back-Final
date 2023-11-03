@@ -100,28 +100,6 @@ server.listen(port, ()=>{
  
 });
 
-// app.get('/', (req,res)=> {  
-//     if(req.session.user){
-//         let session = req.session.user
-//         let rol = req.session.user.rol 
-//         const data={
-//             title:'ecommerce backend',
-//             message:'Ecommerce backend  Index',
-//             style:'style.css',
-//         }
-//         data[rol]= session  
-//         res.render('index', data) 
-//     }
-//     else{
-//         const data={
-//             title:'ecommerce backend',
-//             message:'Ecommerce backend  Index',
-//             style:'style.css',
-//         }
-//         res.render('index', data) 
-//     }
-// });
-
 app.get("*", (req, res) => {
     return res.status(404).json({
         status: "error",

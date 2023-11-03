@@ -1,10 +1,8 @@
 const UserService = require('../services/users.service');
 const Service = new UserService()
-const UserAdminDTO = require('../dao/DTO/users.admin.dto');
 const cartService = require('../services/carts.service');
-// const cartService = new CartService() 
 const nodemailer = require('nodemailer')
-const {secret,gmailAccount, gmailAppPass} = require('../config/env.config')
+const {gmailAccount, gmailAppPass} = require('../config/env.config')
 const transporter = nodemailer.createTransport({
     service:'gmail',
     port: 587,
@@ -118,7 +116,7 @@ const rolUserById = async (req,res)=>{
         });
     }
 }
-const adminRolUserById = async (req,res)=>{
+const adminRolUserById = async (req,res)=>{ 
     try{
         let _id = req.params.uid
         const user = await  Service.getById(_id)
@@ -230,7 +228,6 @@ const delUsers = async (req,res)=>{
         }
 }
 
-
 const putUserById = async (req, res) => { 
     try {
         const uid = req.params.uid;
@@ -278,7 +275,6 @@ const userDocuments = async (req,res) => {
             }
         }
          await user.save()
-         console.log(user)
         return res.status(200).send({message:'Route :api/users/:uid/document post method', payload: user.documents})
     }
     catch(e){
@@ -313,7 +309,7 @@ const deleteDocuments = async (req,res) => {
     }
 
 }
- 
+  
 module.exports = {
     getUser,
     getUserById,

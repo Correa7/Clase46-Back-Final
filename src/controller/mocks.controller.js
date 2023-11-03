@@ -3,7 +3,7 @@ const {generateUser,generateProduct} = require('../utils/mocks')
 const mockUsers = async (req,res)=>{   
     try {
         let users = [];
-        let numUsuarios = 2
+        let numUsuarios = 30
         for (let index = 0; index < numUsuarios; index++) {
             users.push(generateUser())
         }
@@ -16,7 +16,7 @@ const mockUsers = async (req,res)=>{
 const mockProducts = async (req,res)=>{
     try {
         let products = [];
-        let numOfProducts = 5
+        let numOfProducts = 50
         for (let index = 0; index < numOfProducts; index++) {
             products.push(generateProduct())
         }
